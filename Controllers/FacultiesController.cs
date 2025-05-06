@@ -55,13 +55,18 @@ namespace NotasUnivoDev.Controllers
             return View(model);
 
         }
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            FacultiesModel faculty = DbContext.Faculties.FirstOrDefault(row => row.FacultyId == id) ?? new();
-            faculty.IsActive = faculty.IsActive;
-            DbContext.SaveChanges();
+            FacultiesModel faculty = DbContext.Faculties.FirstOrDefault(row => row.FacultyId == id);
+            if (faculty != null)
+            {
+                faculty.IsActive = !faculty.IsActive;
+                DbContext.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
+
     }
 }

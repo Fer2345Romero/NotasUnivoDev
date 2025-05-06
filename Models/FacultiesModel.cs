@@ -8,6 +8,7 @@ namespace NotasUnivoDev.Models
         public int FacultyId { get; set; }
         public string FacultyName { get; set; }
 
+        //datos quemado
         public FacultiesModel()
         {
             IsActive = true;
