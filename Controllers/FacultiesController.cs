@@ -26,6 +26,7 @@ namespace NotasUnivoDev.Controllers
             {
                 model = DbContext.Faculties.FirstOrDefault(x => x.FacultyId == id) ?? new();
             }
+
             return View(model);
 
         }
@@ -68,5 +69,14 @@ namespace NotasUnivoDev.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult View(int id)
+        {
+            FacultiesModel model = DbContext.Faculties.FirstOrDefault(x => x.FacultyId == id) ?? new();
+            model.Careers = DbContext.Careers.Where(x => x.FacultyId == id).ToList();        
+            return View(model);
+
+        }
     }
 }
+

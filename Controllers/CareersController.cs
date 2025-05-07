@@ -91,5 +91,23 @@ namespace NotasUnivoDev.Controllers
         }
 
 
+        [HttpGet]
+       public IActionResult View(int id)
+        {
+            CareersModel career = DbContext.Careers.FirstOrDefault(x => x.CareerId == id) ?? new();
+            if(career is null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                career.Faculty = DbContext.Faculties.FirstOrDefault(x => career.FacultyId == x.FacultyId) ?? new();
+                return View(career);
+
+            }
+
+        }
+
+
     }
 }
