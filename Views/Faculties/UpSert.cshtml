@@ -1,9 +1,9 @@
 ﻿@model FacultiesModel;
 
 <form asp-action="UpSert" asp-controller="Faculties" method="POST">
-    <div asp-validation-summary="All">
+ @*    <div asp-validation-summary="All">
         <i class="bi bi-exclamation-triangle-fill"></i>
-    </div>
+    </div> *@
 
     <input type="hidden" asp-for="FacultyId" value="@Model.FacultyId" placeholder="FacultyId" aria-label="FacultyId">
 

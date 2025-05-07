@@ -19,7 +19,7 @@ namespace NotasUnivoDev.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpSert(int id)
+        public IActionResult UpSert(int id)
         {
             FacultiesModel model = new();
             if (id > 0)
