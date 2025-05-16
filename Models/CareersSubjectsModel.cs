@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NotasUnivoDev.Models
 {
-    public class CareersSubjectsModel
+    public class CareersSubjectsModel:BaseModel
     {
         [Key]
         public int CareerSubjectId { get; set; }
