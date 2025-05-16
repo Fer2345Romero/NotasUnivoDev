@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NotasUnivoDev.Db;
 
@@ -11,9 +12,11 @@ using NotasUnivoDev.Db;
 namespace NotasUnivoDev.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250516203121_EntidadSubjects")]
+    partial class EntidadSubjects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,32 +63,6 @@ namespace NotasUnivoDev.Migrations
                     b.ToTable("Careers");
                 });
 
-            modelBuilder.Entity("NotasUnivoDev.Models.CareersSubjectsModel", b =>
-                {
-                    b.Property<int>("CareerSubjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CareerSubjectId"));
-
-                    b.Property<int>("CareerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Cycle")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CareerSubjectId");
-
-                    b.HasIndex("CareerId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("CareersSubjects");
-                });
-
             modelBuilder.Entity("NotasUnivoDev.Models.FacultiesModel", b =>
                 {
                     b.Property<int>("FacultyId")
@@ -121,11 +98,11 @@ namespace NotasUnivoDev.Migrations
 
             modelBuilder.Entity("NotasUnivoDev.Models.SubjectsModel", b =>
                 {
-                    b.Property<int>("SubjectId")
+                    b.Property<int>("SubjetctId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjectId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjetctId"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -150,7 +127,7 @@ namespace NotasUnivoDev.Migrations
                     b.Property<int>("VU")
                         .HasColumnType("int");
 
-                    b.HasKey("SubjectId");
+                    b.HasKey("SubjetctId");
 
                     b.ToTable("Subjects");
                 });
@@ -164,25 +141,6 @@ namespace NotasUnivoDev.Migrations
                         .IsRequired();
 
                     b.Navigation("Faculty");
-                });
-
-            modelBuilder.Entity("NotasUnivoDev.Models.CareersSubjectsModel", b =>
-                {
-                    b.HasOne("NotasUnivoDev.Models.CareersModel", "Career")
-                        .WithMany()
-                        .HasForeignKey("CareerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NotasUnivoDev.Models.SubjectsModel", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Career");
-
-                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("NotasUnivoDev.Models.FacultiesModel", b =>
